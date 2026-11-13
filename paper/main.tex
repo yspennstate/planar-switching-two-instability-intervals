@@ -94,13 +94,14 @@ $h_1(\theta)=-\frac34+2\cos2\theta$, $v_0=1$ and $v_1(\theta)=-2\sin2\theta$; th
 \min_{i,\theta}g_i(\theta)\ \le\ \lambda(r)\ \le\ \max_{i,\theta}g_i(\theta),\qquad g_i=h_i+v_if_i'+r(f_{1-i}-f_i)
 \]
 (Lemma~\ref{lem:cert}). A pair $f$ with $g_0=g_1=\lambda(r)$ would solve the Poisson equation of the angular process;
-a pair of trigonometric polynomials with rational coefficients is called a \emph{certificate} at rate $r$. For such a
-pair $g_0$ and $g_1$ are trigonometric polynomials with rational
+a pair of trigonometric polynomials with rational coefficients is called a \emph{certificate} at rate $r$ when the
+two bounds in the display have the same strict sign, which is then the sign of $\lambda(r)$. For a pair of
+trigonometric polynomials with rational coefficients, $g_0$ and $g_1$ are again trigonometric polynomials with rational
 coefficients, and $g_i$ differs from its constant coefficient by at most the sum of the absolute
 values of the others. With $f$ of degree $2K$ this gives $-0.0714\le\lambda(5)\le-0.0097$ for $K=128$ and
 $0.0703\le\lambda(20)\le0.0850$ for $K=32$ (Proposition~\ref{prop:cert}); the second bound gives an explicit
 unstable rate above $r=5$, while the limit $r\to\infty$ gives instability only beyond a rate it does not
-quantify. Since $g_i$ depends on $r$ only through the term $r(f_{1-i}-f_i)$, the same two pairs give the signs on $[4.997,5.003]$ and $[19.95,20.05]$
+quantify. Since $g_i$ depends on $r$ only through the term $r(f_{1-i}-f_i)$, the same two certificates give the signs on $[4.997,5.003]$ and $[19.95,20.05]$
 (Corollary~\ref{cor:nbhd}). By the almost sure limit in Theorem~\ref{thm:main}, Malrieu's set
 $\{r:|X_t|\to\infty\text{ almost surely}\}$ contains $U$ and contains no stable rate, so it is not an interval either.
 
@@ -124,7 +125,7 @@ three-dimensional cooperative example with a stable convex hull and unstable swi
 gives two planar matrices whose set of unstable rates has two components under the switching law~\eqref{eq:gen}.
 
 Section~\ref{sec:setting} sets up the angular process and proves that $\lambda$ exists and is continuous.
-Section~\ref{sec:cert} proves the certificate lemma and the signs near $r=5$ and $r=20$, and Section~\ref{sec:small}
+Section~\ref{sec:cert} proves Lemma~\ref{lem:cert} and the signs near $r=5$ and $r=20$, and Section~\ref{sec:small}
 the sign at small rates together with the proof of Theorem~\ref{thm:main}. Section~\ref{sec:numerics} computes the
 whole curve from the stationary density, and Section~\ref{sec:hurwitz} proves that a pair of normal Hurwitz matrices has no unstable rate.
 
@@ -200,14 +201,14 @@ $\ell\le g_i(\theta)\le u$ for $i=0,1$ and all $\theta$, then $\ell\le\lambda(r)
 \end{lemma}
 
 \begin{proof}
-By Dynkin's formula, $N_t=f_{I_t}(\Theta_t)-f_{I_0}(\Theta_0)-\int_0^t(\cL_rf)_{I_s}(\Theta_s)\,ds$ is a martingale.
+By Dynkin's formula, $M_t=f_{I_t}(\Theta_t)-f_{I_0}(\Theta_0)-\int_0^t(\cL_rf)_{I_s}(\Theta_s)\,ds$ is a martingale.
 Its jumps occur at the jumps of $I$, at rate $r$, and are bounded by $2\|f\|_\infty$, so
-$\E N_t^2\le4r\|f\|_\infty^2t$ and $N_n/n\to0$ almost surely along integers by the strong law for square-integrable
-martingales~\cite[Theorem~2.18]{HH80}. Since $|N_t-N_n|\le2\|f\|_\infty+\|\cL_rf\|_\infty$ for $n\le t\le n+1$, also
-$N_t/t\to0$. By
+$\E M_t^2\le4r\|f\|_\infty^2t$ and $M_n/n\to0$ almost surely along integers by the strong law for square-integrable
+martingales~\cite[Theorem~2.18]{HH80}. Since $|M_t-M_n|\le2\|f\|_\infty+\|\cL_rf\|_\infty$ for $n\le t\le n+1$, also
+$M_t/t\to0$. By
 \eqref{eq:polar},
 \[
-\frac1t\log\frac{R_t}{R_0}=\frac1t\int_0^tg_{I_s}(\Theta_s)\,ds-\frac{f_{I_t}(\Theta_t)-f_{I_0}(\Theta_0)-N_t}{t},
+\frac1t\log\frac{R_t}{R_0}=\frac1t\int_0^tg_{I_s}(\Theta_s)\,ds-\frac{f_{I_t}(\Theta_t)-f_{I_0}(\Theta_0)-M_t}{t},
 \]
 and the last term tends to $0$. The integral average lies in $[\ell,u]$, and the left side tends to $\lambda(r)$ by
 Proposition~\ref{prop:exp}.
@@ -225,7 +226,7 @@ C_i-\sum_{k=1}^{K+1}\bigl(|\alpha_{i,k}|+|\beta_{i,k}|\bigr)\le g_i\le C_i+\sum_
 \end{equation}
 
 \begin{proposition}\label{prop:cert}
-There are rational pairs $f^{(5)}$ with $K=128$ and $f^{(20)}$ with $K=32$, all coefficients with denominators dividing
+There are certificates $f^{(5)}$ at $r=5$ with $K=128$ and $f^{(20)}$ at $r=20$ with $K=32$, all coefficients with denominators dividing
 $10^{12}$, for which the bounds~\eqref{eq:range} at $r=5$ and $r=20$ are the numbers in Table~\ref{tab:cert}.
 Consequently
 \[
@@ -529,6 +530,7 @@ $\kappa$ & $\max_i\|A_i\|$ & Proposition~\ref{prop:exp}\\
 $\Theta^{(n)}$ & the direction at the start of the $n$-th cycle & Proposition~\ref{prop:exp}\\
 $k_r$ & the density of $T_0$ modulo $\pi$ & \eqref{eq:kr}\\
 $m_r$, $\overline m_r$ & lower and upper bounds of the density \eqref{eq:kr} & Proposition~\ref{prop:exp}\\
+$M_t$ & the martingale in the proof of Lemma~\ref{lem:cert} & Section~\ref{sec:cert}\\
 $C_i$, $\alpha_{i,k}$, $\beta_{i,k}$ & Fourier coefficients of $g_i$ & \eqref{eq:g}\\
 $c_{i,k}$, $s_{i,k}$ & coefficients of $f_i$ & Section~\ref{sec:cert}\\
 $f^{(5)}$, $f^{(20)}$ & the certificates at $r=5$ and $r=20$ & Proposition~\ref{prop:cert}\\
