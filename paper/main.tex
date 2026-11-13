@@ -55,7 +55,9 @@ the union of several intervals?
 \medskip
 
 The question is stated for two real $2\times2$ matrices. Theorem~\ref{thm:main} answers it with a pair in which $A_0$
-is Hurwitz and $A_1$ is not; for two Hurwitz matrices it is open (Section~\ref{sec:hurwitz}). Let $\lambda(r)$ be the top Lyapunov exponent of the switched system, defined in Section~\ref{sec:setting}.
+is Hurwitz and $A_1$ is not; for two Hurwitz matrices it is open (Section~\ref{sec:hurwitz}). Let $\Phi_t$ solve $\dot\Phi_t=A_{I_t}\Phi_t$, $\Phi_0=\mathrm{Id}$. The top Lyapunov exponent is
+$\lambda(r)=\lim_{t\to\infty}t^{-1}\log\|\Phi_t\|$; the limit exists almost surely and is not random
+(Proposition~\ref{prop:exp}).
 
 \begin{theorem}\label{thm:main}
 Let
@@ -77,7 +79,7 @@ $[4.997,5.003]$.
 The matrix $A_0$ has eigenvalues $-\frac34\pm i$ and is Hurwitz; $A_1$ has eigenvalues $\frac54$ and $-\frac{11}4$
 and is not. Two limits of $\lambda$ are positive. As $r\to0$, $\lambda(r)\to\frac12\bigl(-\frac34+\frac54\bigr)=\frac14$
 (Proposition~\ref{prop:small}), and as $r\to\infty$, $\lambda(r)$ tends to the largest eigenvalue $-\frac34+\frac{\sqrt3}2$
-of $\bar A=(A_0+A_1)/2$~\cite[Proposition~6.4]{CMMS23}. The set $U$ therefore has two components as soon as
+of $\bar A=(A_0+A_1)/2$~\cite[Proposition~6.4]{CMMS23}. The set $U$ therefore has at least two components as soon as
 $\lambda(r)<0$ at one rate. Neither limit gives the sign of $\lambda$ at a rate of order one, and the direct sums
 of~\cite{LMR14}, which give $k$ components in dimension $2k$, need dimension at least four.
 
@@ -93,7 +95,8 @@ a pair with rational coefficients for which these bounds are computed exactly is
 $r$. If $f_0$ and $f_1$ are trigonometric polynomials with rational coefficients, then so are $g_0$ and $g_1$, their
 coefficients are computed exactly, and $g_i$ differs from its constant coefficient by at most the sum of the absolute
 values of the others. With $f$ of degree $2K$ this gives $-0.0714\le\lambda(5)\le-0.0097$ for $K=128$ and
-$0.0703\le\lambda(20)\le0.0850$ for $K=32$ (Proposition~\ref{prop:cert}). Since $g_i$ depends on $r$ only through the
+$0.0703\le\lambda(20)\le0.0850$ for $K=32$ (Proposition~\ref{prop:cert}); the second bound places an explicit rate in
+the component of $U$ that contains all large rates. Since $g_i$ depends on $r$ only through the
 term $r(f_{1-i}-f_i)$, the same two pairs give the signs on $[4.997,5.003]$ and $[19.95,20.05]$
 (Corollary~\ref{cor:nbhd}). Malrieu defines the unstable rates as those for which $|X_t|\to\infty$ almost surely; this
 set contains $(0,\frac1{10}]$ and $[19.95,20.05]$ and misses $[4.997,5.003]$, so it is not an interval either.
@@ -101,7 +104,7 @@ set contains $(0,\frac1{10}]$ and $[19.95,20.05]$ and misses $[4.997,5.003]$, so
 Section~\ref{sec:setting} sets up the angular process and proves that $\lambda$ exists and is continuous.
 Section~\ref{sec:cert} proves the certificate lemma and the signs near $r=5$ and $r=20$, and Section~\ref{sec:small}
 the sign at small rates together with the proof of Theorem~\ref{thm:main}. Section~\ref{sec:numerics} computes the
-whole curve from the stationary density, and Section~\ref{sec:hurwitz} discusses the case of two Hurwitz matrices.
+whole curve from the stationary density, and Section~\ref{sec:hurwitz} proves that a Hurwitz pair with two unstable components must contain a non-normal matrix.
 
 \medskip\noindent\textbf{Related work.}
 Lawley, Mattingly and Reed~\cite{LMR14} prove that switching between Hurwitz matrices is stable at slow and fast rates
@@ -144,8 +147,8 @@ toward the horizontal axis.
 
 \begin{proposition}\label{prop:exp}
 For the matrices~\eqref{eq:pair} and every $r>0$ there is $\lambda(r)\in\R$ such that $t^{-1}\log|X_t|\to\lambda(r)$
-almost surely for every $X_0\ne0$ and every initial state $I_0$; $\lambda(r)$ is the top Lyapunov exponent of the
-matrix cocycle, and $\lambda$ is continuous on $(0,\infty)$.
+almost surely for every $X_0\ne0$ and every initial state $I_0$; $t^{-1}\log\|\Phi_t\|\to\lambda(r)$ almost surely,
+and $\lambda$ is continuous on $(0,\infty)$.
 \end{proposition}
 
 \begin{proof}
@@ -232,8 +235,8 @@ $r$ & state $i$ & lower bound in \eqref{eq:range} & upper bound in \eqref{eq:ran
 20 & 1 & $0.070309824390$ & $0.084999667350$\\
 \bottomrule
 \end{tabular}
-\caption{Exact ranges of $g_i=h_i+(\cL_rf)_i$ for the two certificates. Every entry is an exact rational with
-denominator dividing $10^{12}$, written in full.}\label{tab:cert}
+\caption{The bounds \eqref{eq:range} for $g_i=h_i+(\cL_rf)_i$, with $f=f^{(5)}$ at $r=5$ and $f=f^{(20)}$ at $r=20$.
+Every entry is a rational number with denominator dividing $10^{12}$, written in full.}\label{tab:cert}
 \end{table}
 
 \begin{proof}[Proof of Proposition~\ref{prop:cert}]
@@ -253,10 +256,10 @@ $-0.0756\le\lambda(r)\le-0.0055$ for $4.997\le r\le5.003$ and $0.0361\le\lambda(
 \end{corollary}
 
 \begin{proof}
-By \eqref{eq:anggen}, $(\cL_rf)_i-(\cL_{r_0}f)_i=(r-r_0)(f_{1-i}-f_i)$, so with the same $f$ the range of $g_i$ at rate
-$r$ is that at $r_0$ widened by $|r-r_0|\,\|f_1-f_0\|_\infty$ on each side. Bounding $\|f_1-f_0\|_\infty$ by the sum
+By \eqref{eq:anggen}, $(\cL_rf)_i-(\cL_{r_0}f)_i=(r-r_0)(f_{1-i}-f_i)$, so with the same $f$ the bounds \eqref{eq:range} for $g_i$ at rate
+$r$ are those at $r_0$ widened by $|r-r_0|\,\|f_1-f_0\|_\infty$ on each side. Bounding $\|f_1-f_0\|_\infty$ by the sum
 of the absolute values of the Fourier coefficients of $f_1-f_0$ gives at most $1.3918$ for $f^{(5)}$ and at most
-$0.6824$ for $f^{(20)}$ (the exact rationals are in \file{data/certified_neighborhoods.json}). For $f^{(5)}$ the widened ranges of $g_0$ and $g_1$ lie in
+$0.6824$ for $f^{(20)}$ (the exact rationals are in \file{data/certified_neighborhoods.json}). For $f^{(5)}$ the widened bounds for $g_0$ and $g_1$ lie in
 \[
 [-0.071355633951-0.003\cdot1.3918,\ -0.009745897257+0.003\cdot1.3918]\subset[-0.0756,\,-0.0055],
 \]
@@ -264,7 +267,7 @@ and for $f^{(20)}$ they lie in
 \[
 [0.070309824390-0.05\cdot0.6824,\ 0.084999667350+0.05\cdot0.6824]\subset[0.0361,\,0.1192],
 \]
-since by Table~\ref{tab:cert} the range of $g_0$ lies inside that of $g_1$ at both rates. Lemma~\ref{lem:cert} gives
+since by Table~\ref{tab:cert} the bounds for $g_0$ lie inside those for $g_1$ at both rates. Lemma~\ref{lem:cert} gives
 the bounds.
 \end{proof}
 
@@ -366,9 +369,8 @@ are the rates where the sign is proved.}\label{fig:curve}
 
 \section{The Hurwitz case}\label{sec:hurwitz}
 
-In the example of~\cite{LMR14} that precedes Open question~3 both matrices are Hurwitz, and one may read the question
-as asking for such a pair. Whether two Hurwitz matrices can have an unstable set with two components is open. Two
-remarks bear on it.
+In the example of~\cite{LMR14} that precedes Open question~3 both matrices are Hurwitz. Whether two Hurwitz
+matrices can have an unstable set with two components is open.
 
 First, no pair of Hurwitz matrices of the form $A_0-c_0\mathrm{Id}$, $A_1-c_1\mathrm{Id}$ is unstable at any rate.
 The shift lowers $\lambda(r)$ by $(c_0+c_1)/2$ for every $r$, because the two states are occupied half of the time
@@ -380,10 +382,13 @@ $\epsilon>0$. If both matrices are normal and Hurwitz, then $\frac{d}{dt}|X_t|^2
 switching path, and $\lambda(r)\le-\epsilon$ for every $r$. A Hurwitz pair whose unstable set has two components must
 therefore contain a non-normal matrix, as the pair of~\cite{LMR14} does.
 
-Second, among 1545 Hurwitz pairs, obtained by shifting each matrix of 515 random planar pairs to spectral abscissa
-$-\gamma$ for $\gamma\in\{0.01,0.05,0.1\}$, none has two components of the unstable set at the sampled rates
-(\file{data/hurwitz_search.json}). The exponents were computed with a 256-cell discretization of the angle at 49
-rates in $[10^{-3},10^3]$. Components narrower than the spacing of the sampled rates are not resolved.
+Second, a numerical search gave no example. It starts from 515 pairs of traceless planar matrices, drawn as in
+\file{code/search_ctmc.py}: in a third of the draws $A_0$ generates the rotations, in a third
+$A_0=\mathrm{diag}(1,-1)$, and in a third both matrices have integer entries. Each matrix is shifted by a multiple of
+the identity to spectral abscissa $-\gamma$, $\gamma\in\{0.01,0.05,0.1\}$, which lowers the curve $\lambda$ by a
+constant. At 49 rates in $[10^{-3},10^3]$, with a 256-cell discretization of the direction, 1350 of the 1545 shifted
+pairs have no unstable rate, 195 have one run of unstable rates, and none has two (\file{data/hurwitz_search.json}).
+Components narrower than the spacing of the rates are not resolved.
 
 \section*{Acknowledgements and funding}
 This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math
@@ -396,7 +401,7 @@ repository~\cite{BrainFramework}.
 The research presented in this paper was supported by the European Research Council (ERC) under the European Union's
 Horizon Europe research and innovation programme (grant agreement No.~101041711), by the Simons Foundation as part of
 the Collaboration on the Mathematical and Scientific Foundations of Deep Learning, by Heights Labs, by Convex Nexus
-Capital, by the Israel Science Foundation (grant number 2258/19), and by the Israel Science Foundation (ISF Grant
+Capital, and by the Israel Science Foundation (grants 2258/19 and
 4101/25). Computational resources were provided in part by Google Cloud through its education credits program (credit
 530550103).
 
@@ -409,7 +414,8 @@ The paper comes out of Math Brain, an ongoing project on the use of AI systems f
 results were developed with the Brain~\cite{BrainFramework} and Math Brain~\cite{MathBrainRepo}. A Codex agent
 (OpenAI) found the pair~\eqref{eq:pair}, constructed the certificates and proved Theorem~\ref{thm:main}; a second
 Codex agent checked the proofs and recomputed the certificates, the stationary density and the Monte Carlo estimates
-with its own programs; a Claude agent (Anthropic) ran a third discretization and prepared the manuscript. The author directed the work and is responsible for the content of the paper and for decisions
+with its own programs; a Claude agent (Anthropic) computed the stationary density with its own discretization and prepared the
+manuscript. The author directed the work and is responsible for the content of the paper and for decisions
 concerning its dissemination.
 
 \section*{Code and data availability}
@@ -426,7 +432,7 @@ systems, \emph{Ann. Appl. Probab.} \textbf{24} (2014), 292--311.
 \bibitem{BLSS25} M.~Bena\"im, C.~Lobry, T.~Sari and \'E.~Strickler, A note on the top Lyapunov exponent of linear
 cooperative systems, \emph{Ann. Fac. Sci. Toulouse Math. (6)} \textbf{34} (2025), 225--241.
 \url{https://doi.org/10.5802/afst.1811}
-\bibitem{BS19} M.~Bena\"im and E.~Strickler, Random switching between vector fields having a common zero, \emph{Ann.
+\bibitem{BS19} M.~Bena\"im and \'E.~Strickler, Random switching between vector fields having a common zero, \emph{Ann.
 Appl. Probab.} \textbf{29} (2019), 326--375.
 \url{https://doi.org/10.1214/18-AAP1418}
 \bibitem{CMMS23} Y.~Chitour, G.~Mazanti, P.~Monmarch\'e and M.~Sigalotti, On the gap between deterministic and
@@ -453,7 +459,7 @@ Press, Cambridge, 2009.
 fluctuations on population growth: slow- and fast-limit approximations of Lyapunov exponents for periodic and random
 environments, \emph{Bull. Math. Biol.} \textbf{87} (2025), Paper No.~81.
 \url{https://doi.org/10.1007/s11538-025-01443-z}
-\bibitem{MS25} P.~Monmarch\'e and E.~Strickler, Asymptotic expansion of the invariant measure for Markov-modulated ODEs
+\bibitem{MS25} P.~Monmarch\'e and \'E.~Strickler, Asymptotic expansion of the invariant measure for Markov-modulated ODEs
 at high frequency, \emph{J. Appl. Probab.} \textbf{62} (2025), 898--924.
 \url{https://doi.org/10.1017/jpr.2024.107}
 \bibitem{PJB19} M.~Porfiri, R.~Jeter and I.~Belykh, Windows of opportunity for the stability of jump linear systems:
@@ -475,9 +481,6 @@ October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/pa
 
 \appendix
 \section{Notation}\label{app:notation}
-Letters used only inside one proof are not listed.
-
-\medskip
 \begin{center}
 \small
 \begin{tabular}{@{}lp{0.6\textwidth}l@{}}
@@ -487,19 +490,20 @@ Symbol & Meaning & First appears\\
 $X_t$, $I_t$ & the planar component and the switching state & Section~\ref{sec:intro}\\
 $A_0$, $A_1$ & the two matrices; from Theorem~\ref{thm:main} on, the pair \eqref{eq:pair} & Section~\ref{sec:intro}\\
 $r$ & the rate of each jump of $I$ & Section~\ref{sec:intro}\\
-$\lambda(r)$ & the top Lyapunov exponent & Theorem~\ref{thm:main}\\
+$\Phi_t$, $\lambda(r)$ & the fundamental matrix and the top Lyapunov exponent & Section~\ref{sec:intro}\\
 $U$ & the set of rates with $\lambda(r)>0$ & Theorem~\ref{thm:main}\\
 $\bar A$ & $(A_0+A_1)/2$ & Section~\ref{sec:intro}\\
+$\Theta_t$ & the direction of $X_t$ modulo $\pi$ & Section~\ref{sec:intro}\\
+$h_i$, $v_i$ & radial growth rate and angular velocity in state $i$ & Section~\ref{sec:intro}\\
+$f=(f_0,f_1)$, $g_i$ & a pair of $C^1$ functions of period $\pi$ and $h_i+v_if_i'+r(f_{1-i}-f_i)$ & Section~\ref{sec:intro}\\
+$K$ & the number of harmonics in a certificate & Section~\ref{sec:intro}\\
 $u_\theta$, $u_\theta^\perp$ & the unit vector at angle $\theta$ and its rotation by $\pi/2$ & Section~\ref{sec:setting}\\
-$R_t$, $\Theta_t$ & $|X_t|$ and the direction of $X_t$ modulo $\pi$ & \eqref{eq:polar}\\
-$h_i$, $v_i$ & radial growth rate and angular velocity in state $i$ & \eqref{eq:polar}\\
+$R_t$ & $|X_t|$ & \eqref{eq:polar}\\
 $T_0$, $T_1$ & holding times in states $0$ and $1$ during one cycle & Proposition~\ref{prop:exp}\\
 $\Theta^{(n)}$ & the direction at the start of the $n$-th period in state $1$ & Proposition~\ref{prop:exp}\\
 $k_r$ & the density of $T_0$ modulo $\pi$ & \eqref{eq:kr}\\
-$\cL_r$ & generator of the angular process $(\Theta,I)$ & \eqref{eq:anggen}\\
 $m_r$, $M_r$ & lower and upper bounds of the density \eqref{eq:kr} & Proposition~\ref{prop:exp}\\
-$f=(f_0,f_1)$, $g_i$ & a test pair and $h_i+(\cL_rf)_i$ & Lemma~\ref{lem:cert}\\
-$K$ & the number of harmonics in a certificate & \eqref{eq:g}\\
+$\cL_r$ & generator of the angular process $(\Theta,I)$ & \eqref{eq:anggen}\\
 $C_i$, $\alpha_{i,k}$, $\beta_{i,k}$ & Fourier coefficients of $g_i$ & \eqref{eq:g}\\
 $f^{(5)}$, $f^{(20)}$ & the certificates at $r=5$ and $r=20$ & Proposition~\ref{prop:cert}\\
 $p_0$, $p_1$, $J$ & stationary densities of $(\Theta,I)$ and their flux & Section~\ref{sec:numerics}\\
