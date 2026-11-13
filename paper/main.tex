@@ -27,8 +27,8 @@ can be chosen so that the set of unstable rates is a union of several intervals.
 $A_0=\begin{pmatrix}-3/4&-1\\1&-3/4\end{pmatrix}$ and the non-Hurwitz matrix $A_1=\mathrm{diag}(5/4,-11/4)$ we prove
 that the top Lyapunov exponent $\lambda(r)$ is continuous, positive on $(0,1/10]$, negative on $[4.997,5.003]$ and
 positive on $[19.95,20.05]$, so the unstable set has at least two components. The signs near $r=5$ and $r=20$ come from
-trigonometric polynomials with exact rational coefficients that solve the Poisson equation of the angular process up
-to an explicit error. Numerically $\lambda$ changes sign twice, near $r=1.2228$ and $r=7.7616$. The case in which both
+trigonometric polynomials with exact rational coefficients that solve the Poisson equation for the direction $X_t/|X_t|$
+up to an explicit error. Numerically $\lambda$ changes sign twice, near $r=1.2228$ and $r=7.7616$. The case in which both
 matrices are Hurwitz, as in the example behind the question, remains open.
 \end{abstract}
 \maketitle
@@ -166,12 +166,13 @@ converges to it in total variation at a geometric rate uniform in the starting p
 almost surely from every starting point~\cite[Theorem~16.0.2]{MT09}.
 
 The increment of $\log R$ over a cycle is a function of the direction at its start and of $(T_0,T_1)$, bounded in
-absolute value by $\|A_0\|T_0+\|A_1\|T_1$, which has finite second moment. The ergodic theorem for the Markov chain
-formed by the directions and the holding times, together with the strong law for $\sum(T_0+T_1)$, gives
+absolute value by $\|A_0\|T_0+\|A_1\|T_1$, which has finite second moment. The law of large numbers for the positive Harris chain
+$(\Theta^{(n)},T_0^{(n)},T_1^{(n)})$~\cite[Theorem~17.0.1]{MT09}, together with the strong law of large numbers for
+the independent sums $\sum_n(T_0^{(n)}+T_1^{(n)})$, gives
 $t^{-1}\log R_t\to\lambda(r)$ along cycle ends, with $\lambda(r)$ equal to the stationary mean of the cycle increment
-divided by the mean cycle length $2/r$. With $C=\max_i\|A_i\|$, between cycle ends $\log R$ moves by at most $C(T_0+T_1)$ for the current
-cycle, and $\max_{n\le N}(T_0^{(n)}+T_1^{(n)})/N\to0$ almost surely, so the limit holds along all $t$. It does not depend
-on $X_0\ne0$; applying it to two independent initial vectors identifies $\lambda(r)$ with the top exponent of the
+divided by the mean cycle length $2/r$. With $\kappa=\max_i\|A_i\|$, between cycle ends $\log R$ moves by at most $\kappa(T_0+T_1)$ for the
+current cycle, and $\max_{n\le N}(T_0^{(n)}+T_1^{(n)})/N\to0$ almost surely, so the limit holds along all $t$. It does not depend
+on $X_0\ne0$; applying it to two linearly independent initial vectors identifies $\lambda(r)$ with the top exponent of the
 cocycle.
 
 For continuity, fix a compact interval $J\subset(0,\infty)$. The constant $m_r$ is bounded below on $J$, so the Doeblin
@@ -240,7 +241,8 @@ Every entry is a rational number with denominator dividing $10^{12}$, written in
 \end{table}
 
 \begin{proof}[Proof of Proposition~\ref{prop:cert}]
-The coefficients are listed in the repository, in the file \file{data/poisson_certificates.json}. They are
+The coefficients are listed in the repository, in the file \file{data/poisson_certificates.json}, whose SHA-256
+checksum begins \texttt{737e1521068d8de6} (the full value is in \file{SHA256SUMS}). They are
 twelve-place decimal roundings of a floating-point solution of the Poisson equation restricted to the harmonics
 $k\le K$. Given the coefficients, \eqref{eq:g} is computed by exact rational arithmetic, using
 $\frac{d}{d\theta}\cos2k\theta=-2k\sin2k\theta$, $\frac{d}{d\theta}\sin2k\theta=2k\cos2k\theta$ and the product
