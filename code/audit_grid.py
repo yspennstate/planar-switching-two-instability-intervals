@@ -2,7 +2,7 @@ import os
 for k in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','VECLIB_MAXIMUM_THREADS'):os.environ[k]='1'
 import csv,json
 import numpy as np
-from candidate_density import density
+from stationary_density import density
 rows=list(csv.DictReader(open('data/candidate_grid.csv')));errors=[]
 with open('data/candidate_grid_refined.csv','w') as f:
     w=csv.writer(f);w.writerow(['r','lambda','mass0','mass1','J'])

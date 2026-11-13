@@ -1,4 +1,4 @@
-"""Independent stationary-flux calculation, written separately from candidate_density.py.
+"""Independent stationary-flux calculation, written separately from stationary_density.py.
 
 Coordinates on the two arcs, each from repeller to attractor:
  theta_left=atan(exp(-t)), theta_right=pi/2+atan(exp(t)).

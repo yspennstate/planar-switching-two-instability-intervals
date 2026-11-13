@@ -35,21 +35,21 @@ Certificates (Proposition 3.2 and Corollary 3.3 of the paper):
   `data/poisson_certificates.json`.
 * `code/verify_certificate.py` recomputes the bounds of Table 1 in exact rational arithmetic in the sine-cosine
   basis and writes `data/verification.json`.
-* `code/independent_certificates.py` recomputes them with Laurent polynomials in z = exp(2 i theta) and writes
+* `code/certificate_laurent.py` recomputes them with Laurent polynomials in z = exp(2 i theta) and writes
   `data/independent/certificate_audit.json`.
-* `code/interval_audit.py` encloses the same values in interval arithmetic at fifty digits and writes
+* `code/interval_bounds.py` encloses the same values in interval arithmetic at fifty digits and writes
   `data/interval_audit.json`.
 * `code/certified_neighborhoods.py` extends the signs to the rate intervals around 5 and 20 and writes
   `data/certified_neighborhoods.json`.
 
 Numerics (Section 5):
 
-* `code/candidate_density.py` and `code/numerics.py` compute lambda(r) from the explicit stationary density and from
+* `code/stationary_density.py` and `code/numerics.py` compute lambda(r) from the explicit stationary density and from
   a discretised generator; `code/validate_candidate.py` runs the grid in `data/candidate_grid.csv`, the cross-checks
   in `data/crosschecks.json` and the two crossings in `data/numerical_roots.json`.
 * `code/monte_carlo.c` (C99, `cc -O2 -o mc code/monte_carlo.c -lm`) simulates the process; block means are in
   `data/monte_carlo_blocks.csv`.
-* `code/independent_density.py` is a separate stationary-flux calculation on its own 151-rate grid
+* `code/stationary_density_second.py` is a separate stationary-flux calculation on its own 151-rate grid
   (`data/independent/`).
 * `code/audit_grid.py` compares the grid with a refined one (`data/candidate_grid_refined.csv`,
   `data/grid_audit.json`); `code/plot_candidate.py` draws `paper/figures/curve.pdf`.

@@ -3,7 +3,7 @@ for key in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','VECLIB_MAXIMUM_THREADS','M
 import json,csv
 import numpy as np
 from scipy.optimize import brentq
-from candidate_density import density
+from stationary_density import density
 from numerics import ctmc
 mats=np.array([[[-.75,-1],[1,-.75]],[[1.25,0],[0,-2.75]]])
 checks=[]

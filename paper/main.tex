@@ -24,7 +24,7 @@
 \begin{abstract}
 Let $\dot X_t=A_{I_t}X_t$ in $\R^2$, where $I$ jumps between $0$ and $1$ at rate $r$. Malrieu asked whether $A_0,A_1$
 can be chosen so that the set of unstable rates is a union of several intervals. For the Hurwitz matrix
-$A_0=\begin{pmatrix}-3/4&-1\\1&-3/4\end{pmatrix}$ and the non-Hurwitz matrix $A_1=\mathrm{diag}(5/4,-11/4)$ we prove
+$A_0=\bigl(\begin{smallmatrix}-3/4&-1\\1&-3/4\end{smallmatrix}\bigr)$ and the non-Hurwitz matrix $A_1=\mathrm{diag}(5/4,-11/4)$ we prove
 that the top Lyapunov exponent $\lambda(r)$ is continuous, positive on $(0,1/10]$, negative on $[4.997,5.003]$ and
 positive on $[19.95,20.05]$, so the set of unstable rates has at least two components. The signs near $r=5$ and $r=20$ come from
 trigonometric polynomials with exact rational coefficients that solve the Poisson equation for the direction $X_t/|X_t|$
@@ -94,8 +94,8 @@ $h_1(\theta)=-\frac34+2\cos2\theta$, $v_0=1$ and $v_1(\theta)=-2\sin2\theta$; th
 \min_{i,\theta}g_i(\theta)\ \le\ \lambda(r)\ \le\ \max_{i,\theta}g_i(\theta),\qquad g_i=h_i+v_if_i'+r(f_{1-i}-f_i)
 \]
 (Lemma~\ref{lem:cert}). A pair $f$ with $g_0=g_1=\lambda(r)$ would solve the Poisson equation of the angular process;
-a pair of trigonometric polynomials with rational coefficients, for which these bounds are computed exactly, is called
-a \emph{certificate} at rate $r$. For such a pair $g_0$ and $g_1$ are trigonometric polynomials with rational
+a pair of trigonometric polynomials with rational coefficients is called a \emph{certificate} at rate $r$. For such a
+pair $g_0$ and $g_1$ are trigonometric polynomials with rational
 coefficients, and $g_i$ differs from its constant coefficient by at most the sum of the absolute
 values of the others. With $f$ of degree $2K$ this gives $-0.0714\le\lambda(5)\le-0.0097$ for $K=128$ and
 $0.0703\le\lambda(20)\le0.0850$ for $K=32$ (Proposition~\ref{prop:cert}); the second bound gives an explicit
@@ -103,11 +103,6 @@ unstable rate above $r=5$, while the limit $r\to\infty$ gives instability only b
 quantify. Since $g_i$ depends on $r$ only through the term $r(f_{1-i}-f_i)$, the same two pairs give the signs on $[4.997,5.003]$ and $[19.95,20.05]$
 (Corollary~\ref{cor:nbhd}). By the almost sure limit in Theorem~\ref{thm:main}, Malrieu's set
 $\{r:|X_t|\to\infty\text{ almost surely}\}$ contains $U$ and contains no stable rate, so it is not an interval either.
-
-Section~\ref{sec:setting} sets up the angular process and proves that $\lambda$ exists and is continuous.
-Section~\ref{sec:cert} proves the certificate lemma and the signs near $r=5$ and $r=20$, and Section~\ref{sec:small}
-the sign at small rates together with the proof of Theorem~\ref{thm:main}. Section~\ref{sec:numerics} computes the
-whole curve from the stationary density, and Section~\ref{sec:hurwitz} proves that a pair of normal Hurwitz matrices has no unstable rate.
 
 \medskip\noindent\textbf{Related work.}
 Lawley, Mattingly and Reed~\cite{LMR14} prove that switching between Hurwitz matrices is stable at slow and fast rates
@@ -124,14 +119,20 @@ that switches between unstable modes~\cite{PJB21}. Neither setting is the two-st
 \eqref{eq:gen}. Bena\"im and Strickler~\cite{BS19} relate the top exponent of switched linear systems to invariant
 measures of the angular process and treat fast switching; Chitour, Mazanti, Monmarch\'e and Sigalotti~\cite{CMMS23}
 compare deterministic and probabilistic exponents and give the fast-switching limit used in
-Section~\ref{sec:numerics}. Slow and fast limits for cooperative systems are in~\cite{BLSS25} and~\cite{MSS25}, and a
+Sections~\ref{sec:intro} and~\ref{sec:numerics}. Slow and fast limits for cooperative systems are in~\cite{BLSS25} and~\cite{MSS25}, and a
 three-dimensional cooperative example with a stable convex hull and unstable switching is in~\cite{MS25}. None of these
 gives two planar matrices whose set of unstable rates has two components under the switching law~\eqref{eq:gen}.
 
+Section~\ref{sec:setting} sets up the angular process and proves that $\lambda$ exists and is continuous.
+Section~\ref{sec:cert} proves the certificate lemma and the signs near $r=5$ and $r=20$, and Section~\ref{sec:small}
+the sign at small rates together with the proof of Theorem~\ref{thm:main}. Section~\ref{sec:numerics} computes the
+whole curve from the stationary density, and Section~\ref{sec:hurwitz} proves that a pair of normal Hurwitz matrices has no unstable rate.
+
 \section{The angular process and the exponent}\label{sec:setting}
 
-For $\theta\in\R/\pi\mathbb Z$ put $u_\theta=(\cos\theta,\sin\theta)$ and $u_\theta^\perp=(-\sin\theta,\cos\theta)$.
+For $\theta\in\R$ put $u_\theta=(\cos\theta,\sin\theta)$ and $u_\theta^\perp=(-\sin\theta,\cos\theta)$.
 For a matrix $A$ let $h_A(\theta)=u_\theta^{\mathsf T}Au_\theta$ and $v_A(\theta)=(u_\theta^\perp)^{\mathsf T}Au_\theta$.
+Both $h_A$ and $v_A$ have period $\pi$, and $\Theta_t$ below is taken modulo $\pi$.
 Writing $X_t=R_tu_{\Theta_t}$ with $R_t=|X_t|$, the equation $\dot X=A_IX$ becomes
 \begin{equation}\label{eq:polar}
 \frac{d}{dt}\log R_t=h_{I_t}(\Theta_t),\qquad \dot\Theta_t=v_{I_t}(\Theta_t),
@@ -163,15 +164,15 @@ $T_0$ modulo $\pi$, and $T_0$ modulo $\pi$ has density
 \begin{equation}\label{eq:kr}
 k_r(s)=\frac{re^{-rs}}{1-e^{-\pi r}},\qquad 0\le s<\pi,
 \end{equation}
-so $m_r\le k_r\le M_r$ with $m_r=r/(e^{\pi r}-1)$ and $M_r=r/(1-e^{-\pi r})$. Since $\Theta^{(n+1)}$ is the
+so $m_r\le k_r\le\overline m_r$ with $m_r=r/(e^{\pi r}-1)$ and $\overline m_r=r/(1-e^{-\pi r})$. Since $\Theta^{(n+1)}$ is the
 direction at the end of the period in state $1$ shifted by $T_0^{(n)}$ modulo $\pi$, and $T_0^{(n)}$ is independent of
 that direction, the transition kernel of the chain $(\Theta^{(n)})$ is bounded below by
-$m_r\,d\theta$, uniformly in the starting direction. By Doeblin's condition the chain has a unique stationary law,
-converges to it in total variation at a geometric rate uniform in the starting point, and its ergodic averages converge
-almost surely from every starting point~\cite[Theorem~16.0.2]{MT09}.
+$m_r\,d\theta$, uniformly in the starting direction. By Doeblin's condition the chain has a unique stationary law
+and converges to it in total variation at a geometric rate uniform in the starting
+point~\cite[Theorem~16.0.2]{MT09}.
 
 The increment of $\log R$ over the $n$-th cycle is a function of $\Theta^{(n)}$ and of $(T_1^{(n)},T_0^{(n)})$, bounded
-in absolute value by $\kappa(T_0^{(n)}+T_1^{(n)})$, with $\kappa=\max_i\|A_i\|$, which has finite second moment. The
+in absolute value by $\kappa(T_0^{(n)}+T_1^{(n)})$, with $\kappa=\max_i\|A_i\|$; this bound is integrable. The
 chain $(\Theta^{(n)},T_1^{(n)},T_0^{(n)})$ has two-step transition kernel bounded below by
 $m_r\,d\theta\otimes\mathrm{Law}(T_1,T_0)$, because $\Theta^{(n+2)}$ is a function of $(\Theta^{(n+1)},T_1^{(n+1)})$
 shifted by the independent $T_0^{(n+1)}$ modulo $\pi$, and is independent of $(T_1^{(n+2)},T_0^{(n+2)})$. It is
@@ -182,13 +183,13 @@ divided by the mean cycle length $2/r$. Between cycle ends $\log R$ moves by at 
 current cycle, and $\max_{n\le N}(T_0^{(n)}+T_1^{(n)})/N\to0$ almost surely, so the limit holds along all $t$. It does not depend
 on $X_0\ne0$; applying it to two linearly independent initial vectors gives $t^{-1}\log\|\Phi_t\|\to\lambda(r)$.
 
-For continuity, fix a compact interval $J\subset(0,\infty)$. The constant $m_r$ is bounded below on $J$, so the Doeblin
+For continuity, fix a compact interval $[a,b]\subset(0,\infty)$. The constant $m_r$ is bounded below on $[a,b]$, so the Doeblin
 bound is uniform there. The holding times have joint density $r^2e^{-r(t_0+t_1)}$, continuous in $r$ in $L^1$, while the
 deterministic maps from the holding times to the next direction and to the cycle increment do not depend on $r$. Hence
 the transition kernel is continuous in $r$ in total variation, uniformly in the starting direction, and by the uniform
 geometric contraction so is the stationary law. The conditional mean of the cycle increment given the starting
 direction is bounded and continuous in $r$ uniformly in the direction, by dominated convergence with the bound
-$\kappa(t_0+t_1)$. Dividing the stationary mean by $2/r$ gives continuity of $\lambda$ on $J$.
+$\kappa(t_0+t_1)$. Dividing the stationary mean by $2/r$ gives continuity of $\lambda$ on $[a,b]$.
 \end{proof}
 
 \section{Certificates}\label{sec:cert}
@@ -199,13 +200,14 @@ $\ell\le g_i(\theta)\le u$ for $i=0,1$ and all $\theta$, then $\ell\le\lambda(r)
 \end{lemma}
 
 \begin{proof}
-By Dynkin's formula, $M_t=f_{I_t}(\Theta_t)-f_{I_0}(\Theta_0)-\int_0^t(\cL_rf)_{I_s}(\Theta_s)\,ds$ is a martingale.
+By Dynkin's formula, $N_t=f_{I_t}(\Theta_t)-f_{I_0}(\Theta_0)-\int_0^t(\cL_rf)_{I_s}(\Theta_s)\,ds$ is a martingale.
 Its jumps occur at the jumps of $I$, at rate $r$, and are bounded by $2\|f\|_\infty$, so
-$\E M_t^2\le4r\|f\|_\infty^2t$ and $M_t/t\to0$ almost surely by the strong law for square-integrable
-martingales~\cite[Theorem~2.18]{HH80} applied along integer times, together with the bound on the jumps in between. By
+$\E N_t^2\le4r\|f\|_\infty^2t$ and $N_n/n\to0$ almost surely along integers by the strong law for square-integrable
+martingales~\cite[Theorem~2.18]{HH80}. Since $|N_t-N_n|\le2\|f\|_\infty+\|\cL_rf\|_\infty$ for $n\le t\le n+1$, also
+$N_t/t\to0$. By
 \eqref{eq:polar},
 \[
-\frac1t\log\frac{R_t}{R_0}=\frac1t\int_0^tg_{I_s}(\Theta_s)\,ds-\frac{f_{I_t}(\Theta_t)-f_{I_0}(\Theta_0)-M_t}{t},
+\frac1t\log\frac{R_t}{R_0}=\frac1t\int_0^tg_{I_s}(\Theta_s)\,ds-\frac{f_{I_t}(\Theta_t)-f_{I_0}(\Theta_0)-N_t}{t},
 \]
 and the last term tends to $0$. The integral average lies in $[\ell,u]$, and the left side tends to $\lambda(r)$ by
 Proposition~\ref{prop:exp}.
@@ -255,7 +257,7 @@ $k\le K$. Given the coefficients, \eqref{eq:g} is computed by exact rational ari
 $\frac{d}{d\theta}\cos2k\theta=-2k\sin2k\theta$, $\frac{d}{d\theta}\sin2k\theta=2k\cos2k\theta$ and the product
 formulas for $\sin2\theta\cos2k\theta$ and $\sin2\theta\sin2k\theta$. The file \file{code/verify_certificate.py}
 carries out this computation with exact rationals in the basis $\cos2k\theta,\sin2k\theta$, and
-\file{code/independent_certificates.py} in the basis $z^k$, $z=e^{2i\theta}$, where $v_1=i(z-z^{-1})$; both give the
+\file{code/certificate_laurent.py} in the basis $z^k$, $z=e^{2i\theta}$, where $v_1=i(z-z^{-1})$; both give the
 entries of Table~\ref{tab:cert}. Lemma~\ref{lem:cert} with $\ell=\min_i$ and $u=\max_i$ of the table entries gives the
 bounds.
 \end{proof}
@@ -265,8 +267,8 @@ $-0.0756\le\lambda(r)\le-0.0055$ for $4.997\le r\le5.003$ and $0.0361\le\lambda(
 \end{corollary}
 
 \begin{proof}
-By \eqref{eq:anggen}, $(\cL_rf)_i-(\cL_{r_0}f)_i=(r-r_0)(f_{1-i}-f_i)$, so with the same $f$ the bounds \eqref{eq:range} for $g_i$ at rate
-$r$ are those at $r_0$ widened by $|r-r_0|\,\|f_1-f_0\|_\infty$ on each side. Bounding $\|f_1-f_0\|_\infty$ by the sum
+By \eqref{eq:anggen}, $(\cL_rf)_i-(\cL_{r_0}f)_i=(r-r_0)(f_{1-i}-f_i)$, so with the same $f$, at rate $r$ each $g_i$ lies between the bounds
+\eqref{eq:range} at $r_0$ widened by $|r-r_0|\,\|f_1-f_0\|_\infty$ on each side. Bounding $\|f_1-f_0\|_\infty$ by the sum
 of the absolute values of the Fourier coefficients of $f_1-f_0$ gives at most $1.3918$ for $f^{(5)}$ and at most
 $0.6824$ for $f^{(20)}$ (the exact rationals are in \file{data/certified_neighborhoods.json}). For $f^{(5)}$ the widened bounds for $g_0$ and $g_1$ lie in
 \[
@@ -297,12 +299,12 @@ for a unit vector $u_\theta$,
 \log|e^{A_1T_1}u_\theta|\ge\log\bigl(e^{5T_1/4}|\cos\theta|\bigr)=\tfrac54T_1+\log|\cos\theta| .
 \]
 The direction $\Theta^{(n)}$ at the start of a cycle, where the period in state $1$ begins, is the direction at the
-end of the previous period in state $1$ shifted by an independent $T_0$ modulo $\pi$, so its conditional density given the past is at most $M_r$. Since $\log|\cos\theta|\le0$ and
+end of the previous period in state $1$ shifted by an independent $T_0$ modulo $\pi$, so its conditional density given the past is at most $\overline m_r$. Since $\log|\cos\theta|\le0$ and
 $\int_0^\pi\log|\cos\theta|\,d\theta=-\pi\log2$,
 \[
-\E\bigl[\log|\cos\Theta^{(n)}|\,\big|\,\text{past}\bigr]\ge-M_r\pi\log2 .
+\E\bigl[\log|\cos\Theta^{(n)}|\,\big|\,\text{past}\bigr]\ge-\overline m_r\pi\log2 .
 \]
-The stationary mean of the cycle increment is therefore at least $-\frac3{4r}+\frac5{4r}-M_r\pi\log2$, and dividing by
+The stationary mean of the cycle increment is therefore at least $-\frac3{4r}+\frac5{4r}-\overline m_r\pi\log2$, and dividing by
 the mean cycle length $2/r$ gives \eqref{eq:small}. Using $1-e^{-x}\ge x/(1+x)$ for $x>0$,
 \[
 \lambda(r)\ge\frac14-\frac{r(1+\pi r)\log2}{2},
@@ -320,7 +322,9 @@ between them does not, so they lie in different components.
 
 \section{Numerical picture}\label{sec:numerics}
 
-The certificates prove signs at chosen rates; the shape of the whole curve is computed numerically. The stationary law
+The certificates prove signs at chosen rates; the shape of the whole curve is computed numerically. The exponent of the
+pair of~\cite{LMR14} is computed from the stationary densities of the angular process, which are
+explicit~\cite[Theorem~4.1]{Mal15}; the same computation applies to the pair~\eqref{eq:pair}. The stationary law
 of $(\Theta,I)$ has densities $p_0,p_1$ satisfying $p_0'=r(p_1-p_0)$ and $(v_1p_1)'=r(p_0-p_1)$, with constant positive
 flux $J=p_0+v_1p_1$ and $\int_0^\pi p_0=\int_0^\pi p_1=\frac12$; then
 \[
@@ -339,9 +343,9 @@ with $J$ fixed by normalization. On the second branch $H'>1$, which gives $rF_+<
 integrals as ordinary differential equations in the coordinate $x=\log|\tan\theta|$ on $(0,\pi/2)$ and
 $x=-\log|\tan\theta|$ on $(\pi/2,\pi)$, so that $\cos2\theta=-\tanh x$ on the first branch and $\tanh x$ on the second,
 which resolves the power singularities at the attracting and repelling directions of $A_1$
-(\file{code/candidate_density.py}). The same integrals computed in a second coordinate
-(\file{code/independent_density.py}) give values of $\lambda$ that differ from these by less than $10^{-12}$ at
-$r=1/10$, $5$ and $20$.
+(\file{code/stationary_density.py}). A second program (\file{code/stationary_density_second.py}) integrates the same
+equations with a different integrator, normalizes by $\int_0^\pi p_0=\frac12$ and integrates $(\cos2\theta-1)p_1$; its
+values of $\lambda$ differ from these by less than $10^{-12}$ at $r=1/10$, $5$ and $20$.
 Table~\ref{tab:num} compares the computation from the stationary density with two other estimates at those rates.
 
 \begin{table}[ht]
@@ -362,12 +366,11 @@ exponential holding times, two seeds of $2\times10^6$ cycles each; the standard 
 
 On a grid of 403 rates in $[10^{-3},10^2]$ the computation from the stationary density gives exactly two sign changes, near $r=1.2228$ and
 $r=7.7616$ (to ten places $1.2228361663$ and $7.7615867624$; Figure~\ref{fig:curve}). A grid of 151 rates in
-$[10^{-3},10^3]$ gives the same two sign changes. The two crossings and the absence of others are numerical
-observations. As $r\to0$, $\lambda(r)\to\frac12(-\frac34+\frac54)=\frac14$ by
-Proposition~\ref{prop:small}. As $r\to\infty$, $\lambda(r)$ tends to the largest eigenvalue $-\frac34+\frac{\sqrt3}{2}
-\approx0.1160$ of $\bar A$; this follows from \cite[Proposition~6.4]{CMMS23}, whose condition (C) holds because the
+$[10^{-3},10^3]$ gives the same two sign changes. The two sign changes and the absence of others are numerical
+observations. As $r\to\infty$, $\lambda(r)$ tends to the largest eigenvalue $-\frac34+\frac{\sqrt3}{2}
+\approx0.1160$ of $\bar A$; this follows from \cite[Proposition~6.4]{CMMS23}, whose condition (C)~\cite[Definition~6.3]{CMMS23} holds because the
 lower eigenspace of $\bar A$ is a line and $A_0$ leaves no real line invariant (their redraw intensity $\mu$ is $2r$ in
-our notation). So both ends of the curve are unstable and the exponent dips below zero in between.
+our notation). With the limit $\frac14$ as $r\to0$ (Proposition~\ref{prop:small}), both ends of the curve are unstable and the exponent dips below zero in between.
 
 \begin{figure}[ht]
 \centering
@@ -382,27 +385,31 @@ In the example of~\cite{LMR14} that precedes Open question~3 both matrices are H
 matrices can have a set of unstable rates with two components is open.
 
 \begin{proposition}\label{prop:normal}
-If $A_0$ and $A_1$ are normal and Hurwitz, then $\lambda(r)<0$ for every $r>0$.
+If $A_0$ and $A_1$ are normal and Hurwitz, there is $\epsilon>0$ such that $|X_t|\le e^{-\epsilon t}|X_0|$ for every
+$r>0$ and every path of $I$. In particular $\limsup_{t\to\infty}t^{-1}\log\|\Phi_t\|\le-\epsilon$, and no rate is
+unstable.
 \end{proposition}
 
 \begin{proof}
 A normal matrix has symmetric part with eigenvalues equal to the real
 parts of its own eigenvalues, so a normal Hurwitz matrix $A$ satisfies $x^{\mathsf T}Ax\le-\epsilon|x|^2$ for some
 $\epsilon>0$. With $\epsilon$ the smaller of the two constants, $\frac{d}{dt}|X_t|^2\le-2\epsilon|X_t|^2$ along every
-switching path, and $\lambda(r)\le-\epsilon$ for every $r$.
+switching path, so $|X_t|\le e^{-\epsilon t}|X_0|$.
 \end{proof}
 
 Both matrices of~\eqref{eq:pair} are normal, so no pair $A_0-c_0\mathrm{Id}$, $A_1-c_1\mathrm{Id}$ obtained from
 \eqref{eq:pair} is a Hurwitz pair with an unstable rate. A Hurwitz pair whose set of unstable rates has two
 components must therefore contain a non-normal matrix, as the pair of~\cite{LMR14} does.
 
-A numerical search gave no example either. The program \file{code/search_ctmc.py} draws 600 pairs of traceless planar
-matrices, 200 of each of three kinds: $A_0$ the generator of the rotations, $A_0=\mathrm{diag}(1,-1)$, and both
-matrices drawn with integer entries. The discretized computation completes at all 49 rates for 515 of them, 194, 169
-and 152 of the three kinds, and the search starts from these. Each matrix is shifted by a multiple of
-the identity to spectral abscissa $-\gamma$, $\gamma\in\{0.01,0.05,0.1\}$, which lowers the curve $\lambda$ by a
-constant. At 49 rates in $[10^{-3},10^3]$, with a 256-cell discretization of the direction, 1350 of the 1545 shifted
-pairs have no unstable rate, 195 have one interval of unstable sampled rates, and none has two (\file{data/hurwitz_search.json}).
+Among Hurwitz pairs obtained by shifting random traceless pairs, none has two intervals of unstable sampled rates.
+The program \file{code/search_ctmc.py} draws 600 pairs of traceless planar matrices, 200 of each of three kinds:
+$A_0$ the generator of the rotations, or $A_0=\mathrm{diag}(1,-1)$, with $A_1$ the traceless part of a matrix with
+integer entries in $[-15,15]$ times a random scale; and both matrices the traceless parts of matrices with integer
+entries in $[-10,10]$. For each pair $\lambda$ is computed at 49 rates in $[10^{-3},10^3]$ from a 256-cell
+discretization of the direction. For 85 pairs this computation fails at some rate (a singular linear system or a
+non-finite value), and these pairs are dropped; 515 remain, 194, 169 and 152 of the three kinds. Each matrix is
+shifted by a multiple of the identity to spectral abscissa $-\gamma$, $\gamma\in\{0.01,0.05,0.1\}$, which lowers the
+curve $\lambda$ by a constant. Of the 1545 shifted pairs, 1350 have no unstable rate, 195 have one interval of unstable sampled rates, and none has two (\file{data/hurwitz_search.json}).
 Components narrower than the spacing of the rates are not resolved.
 
 \section*{Acknowledgements and funding}
@@ -437,7 +444,8 @@ concerning its dissemination.
 The certificates, the programs that check them and the numerical computations are in the repository
 \begin{center}\url{https://github.com/yspennstate/planar-switching-two-instability-intervals}.\end{center}
 The exact checks need only the Python
-standard library; the interval audit uses \texttt{mpmath}~\cite{mpmath}, and the numerical computations use
+standard library; a recomputation of the bounds~\eqref{eq:range} in outward-rounded interval arithmetic
+(\file{code/interval_bounds.py}) uses \texttt{mpmath}~\cite{mpmath}, and the numerical computations use
 NumPy~\cite{NumPy} and SciPy~\cite{SciPy}.
 
 \begin{thebibliography}{99}
@@ -520,13 +528,14 @@ $T_0$, $T_1$ & holding times in states $0$ and $1$ during one cycle & Propositio
 $\kappa$ & $\max_i\|A_i\|$ & Proposition~\ref{prop:exp}\\
 $\Theta^{(n)}$ & the direction at the start of the $n$-th cycle & Proposition~\ref{prop:exp}\\
 $k_r$ & the density of $T_0$ modulo $\pi$ & \eqref{eq:kr}\\
-$m_r$, $M_r$ & lower and upper bounds of the density \eqref{eq:kr} & Proposition~\ref{prop:exp}\\
+$m_r$, $\overline m_r$ & lower and upper bounds of the density \eqref{eq:kr} & Proposition~\ref{prop:exp}\\
 $C_i$, $\alpha_{i,k}$, $\beta_{i,k}$ & Fourier coefficients of $g_i$ & \eqref{eq:g}\\
-$c_{i,k}$, $s_{i,k}$ & coefficients of the trial functions $f_i$ & Section~\ref{sec:cert}\\
+$c_{i,k}$, $s_{i,k}$ & coefficients of $f_i$ & Section~\ref{sec:cert}\\
 $f^{(5)}$, $f^{(20)}$ & the certificates at $r=5$ and $r=20$ & Proposition~\ref{prop:cert}\\
-$\gamma$ & minus the spectral abscissa in the search & Section~\ref{sec:hurwitz}\\
 $p_0$, $p_1$, $J$ & stationary densities of $(\Theta,I)$ and their flux & Section~\ref{sec:numerics}\\
 $H$, $F_\pm$ & the functions in the explicit stationary density & Section~\ref{sec:numerics}\\
+$x$ & the coordinate $\pm\log|\tan\theta|$ for the density computation & Section~\ref{sec:numerics}\\
+$\gamma$ & minus the spectral abscissa in the search & Section~\ref{sec:hurwitz}\\
 \bottomrule
 \end{tabular}
 \end{center}
