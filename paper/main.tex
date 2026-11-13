@@ -26,7 +26,7 @@ Let $\dot X_t=A_{I_t}X_t$ in $\R^2$, where $I$ jumps between $0$ and $1$ at rate
 can be chosen so that the set of unstable rates is a union of several intervals. For the Hurwitz matrix
 $A_0=\begin{pmatrix}-3/4&-1\\1&-3/4\end{pmatrix}$ and the non-Hurwitz matrix $A_1=\mathrm{diag}(5/4,-11/4)$ we prove
 that the top Lyapunov exponent $\lambda(r)$ is continuous, positive on $(0,1/10]$, negative on $[4.997,5.003]$ and
-positive on $[19.95,20.05]$, so the unstable set has at least two components. The middle signs come from
+positive on $[19.95,20.05]$, so the unstable set has at least two components. The signs near $r=5$ and $r=20$ come from
 trigonometric polynomials with exact rational coefficients that solve the Poisson equation of the angular process up
 to an explicit error. Numerically $\lambda$ changes sign twice, near $r=1.2228$ and $r=7.7616$. The case in which both
 matrices are Hurwitz, as in the example behind the question, remains open.
@@ -41,10 +41,12 @@ Markov process on $\R^2\times\{0,1\}$ with generator
 \begin{equation}\label{eq:gen}
 Lf(x,i)=(A_ix)\cdot\nabla_xf(x,i)+r\bigl(f(x,1-i)-f(x,i)\bigr).
 \end{equation}
-This is the setting of Section~4.1 of Malrieu's survey~\cite{Mal15}, which presents the example of Bena\"im, Le Borgne,
-Malrieu and Zitt~\cite{BLMZ14}: there $A_0$ and $A_1$ are Hurwitz (all eigenvalues have negative real part), so is
-every convex combination of them, and yet $|X_t|\to\infty$ almost surely for some rates $r$. For that pair the set of
-unstable rates is empty or, conjecturally, an interval~\cite[Conjecture~4.3]{Mal15}. Malrieu then asks the following.
+This is the setting of Section~4.1 of Malrieu's survey~\cite{Mal15}, which presents an example of Lawley, Mattingly
+and Reed~\cite{LMR14}. For $\alpha>0$ the matrices
+$A_0=\bigl(\begin{smallmatrix}-\alpha&1\\0&-\alpha\end{smallmatrix}\bigr)$ and
+$A_1=\bigl(\begin{smallmatrix}-\alpha&0\\-1&-\alpha\end{smallmatrix}\bigr)$ are Hurwitz (all eigenvalues have negative real part), and so is every convex combination of them. Yet
+$|X_t|\to\infty$ almost surely for some $\alpha$ and some rates $r$. For this family the set of unstable rates is empty
+or, under Conjecture~4.3 of~\cite{Mal15}, an interval. Malrieu then asks the following.
 
 \medskip
 \noindent\textbf{Open question 3 of \cite{Mal15}} (Oscillations of the Lyapunov exponent). Is it possible to choose the
@@ -72,20 +74,29 @@ one containing $(0,1/10]$ and another containing $[19.95,20.05]$, and they are s
 $[4.997,5.003]$.
 \end{theorem}
 
-The matrix $A_0$ has eigenvalues $-3/4\pm i$ and is Hurwitz; $A_1$ has eigenvalues $5/4$ and $-11/4$ and is not. The
-average $\bar A=(A_0+A_1)/2$ has the positive eigenvalue $-3/4+\sqrt3/2$. Malrieu defines the unstable rates as those
-for which $|X_t|\to\infty$ almost surely. By Theorem~\ref{thm:main} this set contains $(0,1/10]$ and $[19.95,20.05]$ and
-misses $[4.997,5.003]$, so it is not an interval under either definition.
+The matrix $A_0$ has eigenvalues $-\frac34\pm i$ and is Hurwitz; $A_1$ has eigenvalues $\frac54$ and $-\frac{11}4$
+and is not. Two limits of $\lambda$ are positive. As $r\to0$, $\lambda(r)\to\frac12\bigl(-\frac34+\frac54\bigr)=\frac14$
+(Proposition~\ref{prop:small}), and as $r\to\infty$, $\lambda(r)$ tends to the largest eigenvalue $-\frac34+\frac{\sqrt3}2$
+of $\bar A=(A_0+A_1)/2$~\cite[Proposition~6.4]{CMMS23}. The set $U$ therefore has two components as soon as
+$\lambda(r)<0$ at one rate. Neither limit gives the sign of $\lambda$ at a rate of order one, and the direct sums
+of~\cite{LMR14}, which give $k$ components in dimension $2k$, need dimension at least four.
 
-The bounds at $r=5$ and $r=20$ come from explicit test functions $f=(f_0,f_1)$ on the projective line. Write
-$X_t=|X_t|u_{\Theta_t}$; the pair $(\Theta,I)$ is the \emph{angular process}, and $\cL_r$ is its generator. If
-$h_i+(\cL_rf)_i$ lies in $[\ell,u]$ everywhere, where $h_i$ is the radial growth rate in state $i$, then
-$\ell\le\lambda(r)\le u$ (Lemma~\ref{lem:cert}). The equation $h_i+(\cL_rf)_i=\lambda(r)$ is the Poisson equation of
-the angular process, and a pair $f$ with rational coefficients for which these bounds are computed exactly is called a
-\emph{certificate} at rate $r$. We take $f_i$ to be trigonometric polynomials of degree $2K$ with rational
-coefficients, $K=128$ at $r=5$ and $K=32$ at $r=20$; then $h_i+(\cL_rf)_i$ is again a trigonometric polynomial, its
-Fourier coefficients are rational numbers computed exactly from those of $f$, and its range is bounded by the sum of
-their absolute values.
+The sign at $r=5$ comes from the following estimate. Write $X_t=|X_t|(\cos\Theta_t,\sin\Theta_t)$, so that
+$\frac{d}{dt}\log|X_t|=h_{I_t}(\Theta_t)$ and $\dot\Theta_t=v_{I_t}(\Theta_t)$ with $h_0=-\frac34$,
+$h_1(\theta)=-\frac34+2\cos2\theta$, $v_0=1$ and $v_1(\theta)=-2\sin2\theta$; the pair $(\Theta,I)$ is the
+\emph{angular process}. For every $r>0$ and every pair $f=(f_0,f_1)$ of $C^1$ functions of period $\pi$,
+\[
+\min_{i,\theta}g_i(\theta)\ \le\ \lambda(r)\ \le\ \max_{i,\theta}g_i(\theta),\qquad g_i=h_i+v_if_i'+r(f_{1-i}-f_i)
+\]
+(Lemma~\ref{lem:cert}). A pair $f$ with $g_0=g_1=\lambda(r)$ would solve the Poisson equation of the angular process;
+a pair with rational coefficients for which these bounds are computed exactly is called a \emph{certificate} at rate
+$r$. If $f_0$ and $f_1$ are trigonometric polynomials with rational coefficients, then so are $g_0$ and $g_1$, their
+coefficients are computed exactly, and $g_i$ differs from its constant coefficient by at most the sum of the absolute
+values of the others. With $f$ of degree $2K$ this gives $-0.0714\le\lambda(5)\le-0.0097$ for $K=128$ and
+$0.0703\le\lambda(20)\le0.0850$ for $K=32$ (Proposition~\ref{prop:cert}). Since $g_i$ depends on $r$ only through the
+term $r(f_{1-i}-f_i)$, the same two pairs give the signs on $[4.997,5.003]$ and $[19.95,20.05]$
+(Corollary~\ref{cor:nbhd}). Malrieu defines the unstable rates as those for which $|X_t|\to\infty$ almost surely; this
+set contains $(0,\frac1{10}]$ and $[19.95,20.05]$ and misses $[4.997,5.003]$, so it is not an interval either.
 
 Section~\ref{sec:setting} sets up the angular process and proves that $\lambda$ exists and is continuous.
 Section~\ref{sec:cert} proves the certificate lemma and the signs near $r=5$ and $r=20$, and Section~\ref{sec:small}
@@ -96,9 +107,11 @@ whole curve from the stationary density, and Section~\ref{sec:hurwitz} discusses
 Lawley, Mattingly and Reed~\cite{LMR14} prove that switching between Hurwitz matrices is stable at slow and fast rates
 when the averaged matrix is Hurwitz. In their Example~3.3 they take direct sums of planar blocks to build pairs of
 $2k\times2k$ matrices whose unstable set has $k$ separated components. The smallest case with two components is in
-dimension four. Lagasquie~\cite{Lag16} looks for a second component of the unstable set in the planar setting of
-\cite{BLMZ14} and finds one after replacing the exponential holding times by Gamma holding times; his model keeps two
-planar matrices but changes the switching law.
+dimension four. Lagasquie~\cite{Lag16} studies a planar pair of the same kind, two Hurwitz matrices all of whose convex
+combinations are Hurwitz, and observes numerically a second region of instability after replacing the exponential
+holding times by Gamma holding times; his model keeps two planar matrices but changes the switching law.
+Bena\"im, Le Borgne, Malrieu and Zitt~\cite{BLMZ14} take two planar Hurwitz matrices with a convex combination that has
+a positive eigenvalue and show that $|X_t|$ tends to $0$ or to infinity according to the rate.
 Porfiri, Jeter and Belykh find disconnected windows of stability for jump linear systems in discrete time, where an
 independent matrix is held for an integer number of steps~\cite{PJB19}, and antiresonance in a nonlinear planar system
 that switches between unstable modes~\cite{PJB21}. Neither setting is the two-state exponential switching of
@@ -353,19 +366,19 @@ are the rates where the sign is proved.}\label{fig:curve}
 
 \section{The Hurwitz case}\label{sec:hurwitz}
 
-In the example of~\cite{BLMZ14} that precedes Open question~3 both matrices are Hurwitz, and one may read the question
+In the example of~\cite{LMR14} that precedes Open question~3 both matrices are Hurwitz, and one may read the question
 as asking for such a pair. Whether two Hurwitz matrices can have an unstable set with two components is open. Two
 remarks bear on it.
 
 First, no pair of Hurwitz matrices of the form $A_0-c_0\mathrm{Id}$, $A_1-c_1\mathrm{Id}$ is unstable at any rate.
-Replacing $A_0,A_1$ by $A_0-c_0\mathrm{Id},A_1-c_1\mathrm{Id}$ lowers $\lambda$ by $(c_0+c_1)/2$ for
-every $r$, because the two states are occupied half of the time each. Making $A_1$ Hurwitz needs $c_1>5/4$, and then
-$\lambda(r)<\frac14-\frac58<0$ for every $r$ by the bound $\lambda\le\frac14$ in the proof of
+The shift lowers $\lambda(r)$ by $(c_0+c_1)/2$ for every $r$, because the two states are occupied half of the time
+each. The shifted matrices are Hurwitz exactly when $c_0>-\frac34$ and $c_1>\frac54$, so $(c_0+c_1)/2>\frac14$, and
+the shifted exponent is less than $\lambda(r)-\frac14\le0$ by the bound $\lambda\le\frac14$ in the proof of
 Proposition~\ref{prop:small}. More generally, a normal matrix has symmetric part with eigenvalues equal to the real
 parts of its own eigenvalues, so a normal Hurwitz matrix $A$ satisfies $x^{\mathsf T}Ax\le-\epsilon|x|^2$ for some
 $\epsilon>0$. If both matrices are normal and Hurwitz, then $\frac{d}{dt}|X_t|^2\le-2\epsilon|X_t|^2$ along every
 switching path, and $\lambda(r)\le-\epsilon$ for every $r$. A Hurwitz pair whose unstable set has two components must
-therefore contain a non-normal matrix, as the pair of~\cite{BLMZ14} does.
+therefore contain a non-normal matrix, as the pair of~\cite{LMR14} does.
 
 Second, among 1545 Hurwitz pairs, obtained by shifting each matrix of 515 random planar pairs to spectral abscissa
 $-\gamma$ for $\gamma\in\{0.01,0.05,0.1\}$, none has two components of the unstable set at the sampled rates
