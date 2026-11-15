@@ -46,6 +46,13 @@ $\lambda(r)=\lim_{t\to\infty}t^{-1}\log\|\Phi_t\|$ when this limit exists almost
 of Theorem~\ref{thm:main} it does (Proposition~\ref{prop:exp}). Call a rate $r$ \emph{unstable} if $\lambda(r)>0$ and
 \emph{stable} if $\lambda(r)<0$.
 
+Lawley, Mattingly and Reed~\cite{LMR14} showed that planar systems can be stable at slow and fast switching rates and
+unstable at intermediate rates, and built higher-dimensional systems with any number of separated instability regions.
+The angular-process approach used here follows Bena\"im, Le Borgne, Malrieu and Zitt~\cite{BLMZ14}, Lawley, Mattingly
+and Reed~\cite{LMR14} and Bena\"im and Strickler~\cite{BS19}; the fast-switching limit is due to Chitour, Mazanti,
+Monmarch\'e and Sigalotti~\cite{CMMS23}, and the recurrence and martingale arguments use theorems of Meyn and
+Tweedie~\cite{MT09} and Hall and Heyde~\cite{HH80}.
+
 This is the setting of Section~4.1 of Malrieu's survey~\cite{Mal15}, which presents an example of Lawley, Mattingly
 and Reed~\cite{LMR14}. For $\alpha>0$ the matrices
 $A_0=\bigl(\begin{smallmatrix}-\alpha&1\\0&-\alpha\end{smallmatrix}\bigr)$ and
@@ -84,7 +91,8 @@ and is not. Two limits of $\lambda$ are positive. As $r\to0$, $\lambda(r)\to\fra
 (Proposition~\ref{prop:small}), and as $r\to\infty$, $\lambda(r)$ tends to the largest eigenvalue $-\frac34+\frac{\sqrt3}2$
 of $\bar A=(A_0+A_1)/2$~\cite[Proposition~6.4]{CMMS23}. The set $U$ therefore has at least two components as soon as
 $\lambda(r)<0$ at one rate. Neither limit gives the sign of $\lambda$ at a rate of order one, and the direct sums
-of~\cite{LMR14}, which give $k$ components in dimension $2k$, need dimension at least four.
+of~\cite{LMR14}, which give at least $k$ separated instability components in dimension $2k$, need dimension at
+least four.
 
 The sign at $r=5$ comes from the following estimate. Write $X_t=|X_t|(\cos\Theta_t,\sin\Theta_t)$, so that
 $\frac{d}{dt}\log|X_t|=h_{I_t}(\Theta_t)$ and $\dot\Theta_t=v_{I_t}(\Theta_t)$ with $h_0=-\frac34$,
@@ -104,11 +112,16 @@ unstable rate above $r=5$, while the limit $r\to\infty$ gives instability only b
 quantify. Since $g_i$ depends on $r$ only through the term $r(f_{1-i}-f_i)$, the same two certificates give the signs on $[4.997,5.003]$ and $[19.95,20.05]$
 (Corollary~\ref{cor:nbhd}). By the almost sure limit in Theorem~\ref{thm:main}, Malrieu's set
 $\{r:|X_t|\to\infty\text{ almost surely}\}$ contains $U$ and contains no stable rate, so it is not an interval either.
+Lemma~\ref{lem:cert} is the usual averaging estimate: applying the generator to an approximate solution of the Poisson
+equation turns a uniform bound on the residual into a bound on the exponent. The finite Fourier coefficients and their
+exact residual bounds make it effective for this pair, and at small rates the cycle argument gives an explicit estimate
+from the rotating phase and the diagonal flow, in place of a slow-switching theorem that requires both matrices to be
+Hurwitz.
 
 \medskip\noindent\textbf{Related work.}
 Lawley, Mattingly and Reed~\cite{LMR14} prove that switching between Hurwitz matrices is stable at slow and fast rates
 when the averaged matrix is Hurwitz. In their Example~3.3 they take direct sums of planar blocks to build pairs of
-$2k\times2k$ matrices whose set of unstable rates has $k$ separated components. The smallest case with two components is in
+$2k\times2k$ matrices whose set of unstable rates has at least $k$ separated components. The smallest case with two components is in
 dimension four. Lagasquie~\cite{Lag16} studies a planar pair of the same kind, two Hurwitz matrices all of whose convex
 combinations are Hurwitz, and observes numerically a second region of instability after replacing the exponential
 holding times by Gamma holding times; his model keeps two planar matrices but changes the switching law.
@@ -133,7 +146,8 @@ whole curve from the stationary density, and Section~\ref{sec:hurwitz} proves th
 
 For $\theta\in\R$ put $u_\theta=(\cos\theta,\sin\theta)$ and $u_\theta^\perp=(-\sin\theta,\cos\theta)$.
 For a matrix $A$ let $h_A(\theta)=u_\theta^{\mathsf T}Au_\theta$ and $v_A(\theta)=(u_\theta^\perp)^{\mathsf T}Au_\theta$.
-Both $h_A$ and $v_A$ have period $\pi$, and $\Theta_t$ below is taken modulo $\pi$.
+Both $h_A$ and $v_A$ have period $\pi$. Below $\Theta_t\in\R$ is a continuous angle of $X_t$; only its class modulo
+$\pi$, the line through $X_t$, enters what follows, and the densities below are taken on $\R/\pi\mathbb{Z}$.
 Writing $X_t=R_tu_{\Theta_t}$ with $R_t=|X_t|$, the equation $\dot X=A_IX$ becomes
 \begin{equation}\label{eq:polar}
 \frac{d}{dt}\log R_t=h_{I_t}(\Theta_t),\qquad \dot\Theta_t=v_{I_t}(\Theta_t),
@@ -157,7 +171,9 @@ and $\lambda$ is continuous on $(0,\infty)$.
 \end{proposition}
 
 \begin{proof}
-Start the clock at a jump into state $1$ and call a \emph{cycle} a holding period $T_1$ in state $1$ followed by the
+For an arbitrary initial state, the first jump into state $1$ comes after a finite time and the logarithmic
+increment before it is finite, so deleting that stretch changes neither limit. Start the clock at a jump into state
+$1$ and call a \emph{cycle} a holding period $T_1$ in state $1$ followed by the
 next holding period $T_0$ in state $0$; the holding times are independent and exponential with mean $1/r$. Let
 $\Theta^{(n)}$ be the direction at the start of the $n$-th cycle; its two holding times $(T_1^{(n)},T_0^{(n)})$ are
 independent of $\Theta^{(n)}$. During a period in state $0$ the direction moves by
@@ -300,10 +316,11 @@ for a unit vector $u_\theta$,
 \log|e^{A_1T_1}u_\theta|\ge\log\bigl(e^{5T_1/4}|\cos\theta|\bigr)=\tfrac54T_1+\log|\cos\theta| .
 \]
 The direction $\Theta^{(n)}$ at the start of a cycle, where the period in state $1$ begins, is the direction at the
-end of the previous period in state $1$ shifted by an independent $T_0$ modulo $\pi$, so its conditional density given the past is at most $\overline m_r$. Since $\log|\cos\theta|\le0$ and
-$\int_0^\pi\log|\cos\theta|\,d\theta=-\pi\log2$,
+end of the previous period in state $1$ shifted by an independent $T_0$ modulo $\pi$. Every transition kernel of the
+chain $\Theta^{(n)}$ therefore has density at most $\overline m_r$, and so has its stationary law $\pi_r$. Since
+$\log|\cos\theta|\le0$ and $\int_0^\pi\log|\cos\theta|\,d\theta=-\pi\log2$,
 \[
-\E\bigl[\log|\cos\Theta^{(n)}|\,\big|\,\text{past}\bigr]\ge-\overline m_r\pi\log2 .
+\int\log|\cos\theta|\,\pi_r(d\theta)\ge-\overline m_r\pi\log2 .
 \]
 The stationary mean of the cycle increment is therefore at least $-\frac3{4r}+\frac5{4r}-\overline m_r\pi\log2$, and dividing by
 the mean cycle length $2/r$ gives \eqref{eq:small}. Using $1-e^{-x}\ge x/(1+x)$ for $x>0$,
@@ -366,7 +383,7 @@ exponential holding times, two seeds of $2\times10^6$ cycles each; the standard 
 \end{table}
 
 On a grid of 403 rates in $[10^{-3},10^2]$ the computation from the stationary density gives exactly two sign changes, near $r=1.2228$ and
-$r=7.7616$ (to ten places $1.2228361663$ and $7.7615867624$; Figure~\ref{fig:curve}). A grid of 151 rates in
+$r=7.7616$ (to ten places $1.2228361665$ and $7.7615867624$; Figure~\ref{fig:curve}). A grid of 151 rates in
 $[10^{-3},10^3]$ gives the same two sign changes. The two sign changes and the absence of others are numerical
 observations. As $r\to\infty$, $\lambda(r)$ tends to the largest eigenvalue $-\frac34+\frac{\sqrt3}{2}
 \approx0.1160$ of $\bar A$; this follows from \cite[Proposition~6.4]{CMMS23}, whose condition (C)~\cite[Definition~6.3]{CMMS23} holds because the
@@ -410,7 +427,7 @@ entries in $[-10,10]$. For each pair $\lambda$ is computed at 49 rates in $[10^{
 discretization of the direction. For 85 pairs this computation fails at some rate (a singular linear system or a
 non-finite value), and these pairs are dropped; 515 remain, 194, 169 and 152 of the three kinds. Each matrix is
 shifted by a multiple of the identity to spectral abscissa $-\gamma$, $\gamma\in\{0.01,0.05,0.1\}$, which lowers the
-curve $\lambda$ by a constant. Of the 1545 shifted pairs, 1350 have no unstable rate, 195 have one interval of unstable sampled rates, and none has two (\file{data/hurwitz_search.json}).
+curve $\lambda$ by a constant. Of the 1545 shifted pairs, 1350 have no unstable sampled rate, 195 have one interval of unstable sampled rates, and none has two (\file{data/hurwitz_search.json}).
 Components narrower than the spacing of the rates are not resolved.
 
 \section*{Acknowledgements and funding}
@@ -438,12 +455,17 @@ results were developed with the Brain~\cite{BrainFramework} and Math Brain~\cite
 (OpenAI) found the pair~\eqref{eq:pair}, constructed the certificates and proved Theorem~\ref{thm:main}; a second
 Codex agent checked the proofs and recomputed the certificates, the stationary density and the Monte Carlo estimates
 with its own programs; a Claude agent (Anthropic) computed the stationary density with its own discretization and prepared the
-manuscript. The author directed the work and is responsible for the content of the paper and for decisions
+manuscript. The angular-process and Lyapunov-exponent methods used are those of Bena\"im, Le Borgne, Malrieu and
+Zitt~\cite{BLMZ14}, Lawley, Mattingly and Reed~\cite{LMR14} and Bena\"im and Strickler~\cite{BS19}; Malrieu posed the
+question and gave the stationary densities~\cite{Mal15}; Chitour, Mazanti, Monmarch\'e and Sigalotti proved the
+fast-switching limit~\cite{CMMS23}; and the ergodic and martingale theorems are those of Meyn and Tweedie~\cite{MT09}
+and Hall and Heyde~\cite{HH80}. New here are the pair~\eqref{eq:pair}, its certificates with exact rational
+coefficients, the estimates for this pair and the numerical computations. The author directed the work and is responsible for the content of the paper and for decisions
 concerning its dissemination.
 
 \section*{Code and data availability}
 The certificates, the programs that check them and the numerical computations are in the repository
-\begin{center}\url{https://github.com/yspennstate/planar-switching-two-instability-intervals}.\end{center}
+\begin{center}\url{https://github.com/yspennstate/planar-switching-two-instability-intervals/tree/v1.1}.\end{center}
 The exact checks need only the Python
 standard library; a recomputation of the bounds~\eqref{eq:range} in outward-rounded interval arithmetic
 (\file{code/interval_bounds.py}) uses \texttt{mpmath}~\cite{mpmath}, and the numerical computations use
@@ -493,11 +515,12 @@ almost sure versus moment convergence, \emph{Automatica} \textbf{100} (2019), 32
 \emph{Phys. Rev. Research} \textbf{3} (2021), L022001.
 \url{https://doi.org/10.1103/PhysRevResearch.3.L022001}
 \bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026,
-\url{https://github.com/yspennstate/math-brain-public}.
+\url{https://github.com/yspennstate/math-brain-public/tree/8c9a6bd478c4ec4082347151b7ae16db50c917dd}.
 \bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research},
-October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24}.
+October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24},
+doi:10.5281/zenodo.24150837.
 \bibitem{BrainFramework} Y.~Shmalo, \emph{Brain Framework}, public software repository, 2026,
-\url{https://github.com/yspennstate/brain-framework-public}.
+\url{https://github.com/yspennstate/brain-framework-public/tree/5629e644cdd510173ae97e9aa92642dabd22dc57}.
 \bibitem{SciPy} P.~Virtanen et al., SciPy 1.0: fundamental algorithms for scientific computing in Python, \emph{Nat.
 Methods} \textbf{17} (2020), 261--272.
 \url{https://doi.org/10.1038/s41592-019-0686-2}

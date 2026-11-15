@@ -46,7 +46,9 @@ Numerics (Section 5):
 
 * `code/stationary_density.py` and `code/numerics.py` compute lambda(r) from the explicit stationary density and from
   a discretised generator; `code/validate_candidate.py` runs the grid in `data/candidate_grid.csv`, the cross-checks
-  in `data/crosschecks.json` and the two crossings in `data/numerical_roots.json`.
+  in `data/crosschecks.json` and the two crossings in `data/numerical_roots.json`. The first crossing there,
+  1.2228361663, is from a coarser solve; the independent computation in `data/independent/summary.json` gives
+  1.2228361665, the value in the paper.
 * `code/monte_carlo.c` (C99, `cc -O2 -o mc code/monte_carlo.c -lm`) simulates the process; block means are in
   `data/monte_carlo_blocks.csv`.
 * `code/stationary_density_second.py` is a separate stationary-flux calculation on its own 151-rate grid

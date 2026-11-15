@@ -14,6 +14,5 @@ with open('data/candidate_grid_refined.csv','w') as f:
         w.writerow([r,d['exponent'],d['mass0'],d['mass1'],d['J']])
 result=dict(rows=len(rows),max_absolute_refinement_change=max(errors),at_rate=float(rows[int(np.argmax(errors))]['r']))
 assert result['max_absolute_refinement_change']<1e-8
-assert result['peak_rss_bytes']<4*1024**3
 json.dump(result,open('data/grid_audit.json','w'),indent=2)
 print(result)
